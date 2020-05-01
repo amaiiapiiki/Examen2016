@@ -1,23 +1,22 @@
 #ifndef FAMILIA_H_
 #define FAMILIA_H_
 
-class Familia : public Miembro
+class Familia
 {
 private:
 	Miembro marido;
     Miembro mujer;
+    char* nombreMarido;
+    char* apellidoMarido;
+    char* nombreMujer;
+    char* apellidoMujer;
 public:
     Familia();
-	Familia(const char*, int);
+    Familia(const char* nombreMarido, const char* apellidoMarido, const char* nombreMujer, const char* apellidoMujer);
 	Familia(const Familia&);
-	~Familia();
-	char* getNombre() const;
-	void setNombre(const char*);
-	int getEdad() const;
-	void setEdad(int);
-	char* toStr() const;
-    char cadenas[19]
-	
+    ~Familia();
+    char* getNombre() const;
+    void Imprimir();
 };
 
 #endif /* FAMILIA_H_ */
