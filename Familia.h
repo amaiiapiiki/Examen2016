@@ -1,7 +1,8 @@
 #ifndef FAMILIA_H_
 #define FAMILIA_H_
 
-class Familia{
+class Familia : public Miembro
+{
 private:
 	Miembro marido;
     Miembro mujer;
@@ -15,7 +16,7 @@ public:
 	int getEdad() const;
 	void setEdad(int);
 	char* toStr() const;
-
+    char cadenas[19]
 	
 };
 

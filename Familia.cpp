@@ -8,7 +8,9 @@ using namespace std;
 
 Familia::Familia(const char* nombre, int edad)
 {
-	this.super();
+	this->edad = 0;
+	this->nombre = new char[1];
+	this->nombre[0] = '\0';
 }
 Familia::Familia(const Familia& p)
 {
