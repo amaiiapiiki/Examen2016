@@ -8,7 +8,7 @@ class ConHijos : public Familia
 private:
     Miembro hijos[];
     int nHijos;
-    Familia(Miembro conyuge1, Miembro conyuge2);
+    Familia familia(Miembro conyuge1, Miembro conyuge2);
 public:
     ConHijos(Miembro hijos[], int nHijos, Miembro conyuge1, Miembro conyuge2);
     virtual Miembro[] getHijos();
