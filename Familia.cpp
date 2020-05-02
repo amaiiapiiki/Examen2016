@@ -38,6 +38,10 @@ void Familia::setConyugeM(Miembro conyugeM)
 {
 
 }
+int getnHijos()
+{
+	return 0;
+}
 void Familia::imprimir()
 {
 

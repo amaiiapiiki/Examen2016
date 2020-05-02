@@ -67,23 +67,52 @@ int ArbolFamilias::contarMenoresEdad(int edad)
 	int n;
 	char* nombres[];
 	ConHijos ch;
+	bool exists;
+
 	for(int i = 0; i < 5; i++)
 	{
 		if(this->familias[i] != NULL){
-//			if(familias[i].getMarido().getEdad() < edad){
-//				n++;
-//			}
-//			if(familias[i].getMujer().getEdad() < edad){
-//				n++;
-//			}
-//			if(familias[i].getnHijos() != 0){
-//				ch = familias[i];
-//				for(int x = 0; x < ch.getnHijos(); x++){
-//					if(ch.getHijos()[x].getEdad() < edad){
-//						n++;
-//					}
-//				}
-//			}
+			if(familias[i].getConyugeH().getEdad() < edad){
+				for(int j = 0; j < n; j++){
+					if(strcpy(nombres[j], familias[i].getConyugeH().getNombre()) != 0){
+						exists = false;
+					}
+				}
+				if(!exists){
+					nombres[n] = new char[strlen(familias[i].getConyugeH().getNombre())];
+					strcpy(nombres[n], familias[i].getConyugeH().getNombre());
+					n++;
+				}
+			}
+			if(familias[i].getConyugeM().getEdad() < edad){
+				for(int j = 0; j < n; j++){
+					if(strcpy(nombres[j], familias[i].getConyugeM().getNombre()) != 0){
+						exists = false;
+					}
+				}
+				if(!exists){
+					nombres[n] = new char[strlen(familias[i].getConyugeM().getNombre())];
+					strcpy(nombres[n], familias[i].getConyugeM().getNombre());
+					n++;
+				}
+			}
+			if(familias[i].getnHijos() != 0){
+				ch = familias[i];
+				for(int j = 0; j < ch.getnHijos(); j++){
+					if(ch.getHijos()[j].getEdad() < edad){
+						for(int k = 0; k < n; k++){
+							if(strcpy(nombres[k], ch.getHijos()[j].getNombre()) != 0){
+								exists = false;
+							}
+						}
+						if(!exists){
+							nombres[n] = new char[strlen(ch.getHijos()[j].getNombre())];
+							strcpy(nombres[n], familias[i].getConyugeM().getNombre());
+							n++;
+						}
+					}
+				}
+			}
 		}
 	}
 	return n;
@@ -95,14 +124,14 @@ Miembro* ArbolFamilias::getConyugesInicial(int* nMiembros, char inicial)
 	for(int i = 0; i < 5; i++)
 	{
 		if(this->familias[i] != NULL){
-//			if(familias[i].getMarido().getNombre()[0] == inicial){
-//				miembros[*nMiembros] = familias[i].getMarido();
-//				*nMiembros++;
-//			}
-//			if(familias[i].getMujer().getNombre()[0] == inicial){
-//				miembros[*nMiembros] = familias[i].getMujer();
-//				*nMiembros++;
-//			}
+			if(familias[i].getConyugeH().getNombre()[0] == inicial){
+				miembros[*nMiembros] = familias[i].getConyugeH();
+				*nMiembros++;
+			}
+			if(familias[i].getConyugeM().getNombre()[0] == inicial){
+				miembros[*nMiembros] = familias[i].getConyugeM();
+				*nMiembros++;
+			}
 		}
 	}
 	return miembros;
