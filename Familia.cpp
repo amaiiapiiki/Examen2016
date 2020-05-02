@@ -50,7 +50,7 @@ Familia::~Familia()
 }
 
 
-void Familia::Imprimir(){
+void Familia::imprimir(){
 
     std::cout << "FAMILIA" << this->getNombre << std::endl;
     std::cout << "Marido: " << this->get_ruedas() << std::endl;

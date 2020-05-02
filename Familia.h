@@ -16,7 +16,7 @@ public:
 	Familia(const Familia&);
     ~Familia();
     char* getNombre() const;
-    void Imprimir();
+    void imprimir();
 };
 
 #endif /* FAMILIA_H_ */
