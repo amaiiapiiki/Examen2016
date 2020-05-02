@@ -1,21 +1,18 @@
-#include <iostream>
-#include "ConHijos.h"
 #include "Miembro.h"
 #include "Familia.h"
+#include <iostream>
 
+#include "ConHijos.h"
 using namespace std;
 
-ConHijos::ConHijos(Miembro hijos:Familia[], int nHijos):Familia(Miembro conyuge1, Miembro conyuge2)
+ConHijos::ConHijos(Miembro conyugeH, Miembro conyugeM, Miembro* hijos, int nHijos, ) :Familia(conyugeH, conyugeM)
 {
-    Miembro hijotmp[nHijos];
-    for (int i = 0; i <= nHijos; i++)
-    {
-        hijotmp[i].setNombre(hijos[i].getNombre());
-        hijotmp[i].setEdad(hijos[i].getEdad());
-
+    this->nHijos = nHijos;
+    this->hijos = new Miembro[nHijos];
+    for(int i = 0; i < nHijos; i++){
+    	this->hijos[i].setEdad(hijos->getEdad());
+    	this->hijos[i].setNombre(hijos->getNombre());
     }
-    this->nHijos = hijotmp;
-    this->Familia(Miembro conyuge1, Miembro conyuge2);
 }
 
 ConHijos::imprimir()

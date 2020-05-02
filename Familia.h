@@ -4,19 +4,19 @@
 class Familia
 {
 private:
-	Miembro marido;
-    Miembro mujer;
-    char* nombreMarido;
-    char* apellidoMarido;
-    char* nombreMujer;
-    char* apellidoMujer;
+	Miembro conyugeH;
+    Miembro conyugeM;
 public:
     Familia();
-    Familia(const char* nombreMarido, const char* apellidoMarido, const char* nombreMujer, const char* apellidoMujer);
-	Familia(const Familia&);
-    ~Familia();
-    char* getNombre() const;
-    void imprimir();
+    Familia(Miembro conyugeH, Miembro conyugeM);
+	Familia(const Familia & f);
+    virtual ~Familia();
+
+    Miembro getConyugeH();
+    void setConyugeH(Miembro conyugeH);
+    Miembro getConyugeM();
+    void setConyugeM(Miembro conyugeM);
+    virtual void imprimir();
 };
 
 #endif /* FAMILIA_H_ */
