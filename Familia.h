@@ -16,7 +16,9 @@ public:
     void setConyugeH(Miembro conyugeH);
     Miembro getConyugeM();
     void setConyugeM(Miembro conyugeM);
+
     virtual int getnHijos();
+    char* getNombre() const;
     virtual void imprimir();
 };
 

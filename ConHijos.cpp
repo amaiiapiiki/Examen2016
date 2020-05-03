@@ -10,8 +10,7 @@ ConHijos::ConHijos(Miembro conyugeH, Miembro conyugeM, Miembro* hijos, int nHijo
     this->nHijos = nHijos;
     this->hijos = new Miembro[nHijos];
     for(int i = 0; i < nHijos; i++){
-    	this->hijos[i].setEdad(hijos->getEdad());
-    	this->hijos[i].setNombre(hijos->getNombre());
+    	this->hijos[i] = hijos[i];
     }
 }
 

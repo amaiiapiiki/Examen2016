@@ -17,27 +17,29 @@ using namespace std;
 
 ArbolFamilias::ArbolFamilias()
 {
-	this->familias = new Familia[5];
+	this->familias[0] = new Familia();
+	this->familias[1] = new Familia();
+	this->familias[2] = new Familia();
+	this->familias[3] = new Familia();
+	this->familias[4] = new Familia();
 }
 ArbolFamilias::ArbolFamilias(const ArbolFamilias & a)
 {
- 	this->familias = new Familia[5];
   	for(int i = 0; i < 5; i++) this->familias[i] = a.familias[i];
 }
-ArbolFamilias::ArbolFamilias(Familia* familias)
+ArbolFamilias::ArbolFamilias(Familia** familias)
 {
-	this->familias = new Familia[5];
   	for(int i = 0; i < 5; i++) this->familias[i] = familias[i];
 }
 ArbolFamilias::~ArbolFamilias()
 {
 	delete[] familias;
 }
-void ArbolFamilias::setFamilias(Familia* familias)
+void ArbolFamilias::setFamilias(Familia** familias)
 {
 	for(int i = 0; i < 5; i++) this->familias[i] = familias[i];
 }
-Familia* ArbolFamilias::getFamilias()
+Familia** ArbolFamilias::getFamilias()
 {
 	return this->familias;
 }
@@ -46,7 +48,7 @@ void ArbolFamilias::anadirFamilia(Familia f)
 	for(int i = 0; i < 5; i++)
 	{
 		if(this->familias[i] == NULL){
-			this->familias[i] = f;
+			this->familias[i] = new Familia(f);
 			break;
 		}
 	}
@@ -58,7 +60,7 @@ void ArbolFamilias::imprimir()
 	for(int i = 0; i < 5; i++)
 	{
 		if(this->familias[i] != NULL){
-			this->familias[i].imprimir();
+			this->familias[i]->imprimir();
 		}
 	}
 }
@@ -72,42 +74,42 @@ int ArbolFamilias::contarMenoresEdad(int edad)
 	for(int i = 0; i < 5; i++)
 	{
 		if(this->familias[i] != NULL){
-			if(familias[i].getConyugeH().getEdad() < edad){
+			if(familias[i]->getConyugeH().getEdad() < edad){
 				for(int j = 0; j < n; j++){
-					if(strcpy(nombres[j], familias[i].getConyugeH().getNombre()) != 0){
+					if(strcmp(nombres[j], familias[i]->getConyugeH().getNombre()) != 0){
 						exists = false;
 					}
 				}
 				if(!exists){
-					nombres[n] = new char[strlen(familias[i].getConyugeH().getNombre())];
-					strcpy(nombres[n], familias[i].getConyugeH().getNombre());
+					nombres[n] = new char[strlen(familias[i]->getConyugeH().getNombre())];
+					strcpy(nombres[n], familias[i]->getConyugeH().getNombre());
 					n++;
 				}
 			}
-			if(familias[i].getConyugeM().getEdad() < edad){
+			if(familias[i]->getConyugeM().getEdad() < edad){
 				for(int j = 0; j < n; j++){
-					if(strcpy(nombres[j], familias[i].getConyugeM().getNombre()) != 0){
+					if(strcpy(nombres[j], familias[i]->getConyugeM().getNombre()) != 0){
 						exists = false;
 					}
 				}
 				if(!exists){
-					nombres[n] = new char[strlen(familias[i].getConyugeM().getNombre())];
-					strcpy(nombres[n], familias[i].getConyugeM().getNombre());
+					nombres[n] = new char[strlen(familias[i]->getConyugeM().getNombre())];
+					strcpy(nombres[n], familias[i]->getConyugeM().getNombre());
 					n++;
 				}
 			}
-			if(familias[i].getnHijos() != 0){
-				ch = familias[i];
+			if(familias[i]->getnHijos() != 0){
+				ch(*familias[i]);
 				for(int j = 0; j < ch.getnHijos(); j++){
 					if(ch.getHijos()[j].getEdad() < edad){
 						for(int k = 0; k < n; k++){
-							if(strcpy(nombres[k], ch.getHijos()[j].getNombre()) != 0){
+							if(strcmp(nombres[k], ch.getHijos()[j].getNombre()) != 0){
 								exists = false;
 							}
 						}
 						if(!exists){
 							nombres[n] = new char[strlen(ch.getHijos()[j].getNombre())];
-							strcpy(nombres[n], familias[i].getConyugeM().getNombre());
+							strcpy(nombres[n], familias[i]->getConyugeM().getNombre());
 							n++;
 						}
 					}
@@ -124,12 +126,12 @@ Miembro* ArbolFamilias::getConyugesInicial(int* nMiembros, char inicial)
 	for(int i = 0; i < 5; i++)
 	{
 		if(this->familias[i] != NULL){
-			if(familias[i].getConyugeH().getNombre()[0] == inicial){
-				miembros[*nMiembros] = familias[i].getConyugeH();
+			if(familias[i]->getConyugeH().getNombre()[0] == inicial){
+				miembros[*nMiembros] = familias[i]->getConyugeH();
 				*nMiembros++;
 			}
-			if(familias[i].getConyugeM().getNombre()[0] == inicial){
-				miembros[*nMiembros] = familias[i].getConyugeM();
+			if(familias[i]->getConyugeM().getNombre()[0] == inicial){
+				miembros[*nMiembros] = familias[i]->getConyugeM();
 				*nMiembros++;
 			}
 		}
