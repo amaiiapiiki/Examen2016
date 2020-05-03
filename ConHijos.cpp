@@ -5,7 +5,7 @@
 #include "ConHijos.h"
 using namespace std;
 
-ConHijos::ConHijos(Miembro conyugeH, Miembro conyugeM, Miembro* hijos, int nHijos, ) :Familia(conyugeH, conyugeM)
+ConHijos::ConHijos(Miembro conyugeH, Miembro conyugeM, Miembro* hijos, int nHijos) :Familia(conyugeH, conyugeM)
 {
     this->nHijos = nHijos;
     this->hijos = new Miembro[nHijos];
